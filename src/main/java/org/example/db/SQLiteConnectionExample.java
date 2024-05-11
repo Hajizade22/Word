@@ -16,7 +16,7 @@ public class SQLiteConnectionExample {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
             while (resultSet.next()) {
-                allowedWords.add(resultSet.getString("deyisilmeliOlan"));
+                allowedWords.add(resultSet.getString("deyisilmeliSozler"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -32,7 +32,72 @@ public class SQLiteConnectionExample {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
             while (resultSet.next()) {
-                allowedWords.add(resultSet.getString("suallar"));
+                allowedWords.add(resultSet.getString("sozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> ABC1Telefon() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM ABC1telefon";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("sozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> ABC2Telefon() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM ABC2Telefon";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("deyisilmeliSozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+
+    public static List<String> FerrumKapital1() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM FerrumKapital1";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("sozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> FerrumKapital2() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM FerrumKapital2";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("deyisilmeliSozler"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -16,7 +16,7 @@ public class MainGUI extends JFrame {
 
     public MainGUI() {
         setTitle("Astara rayon Məhkəməsi");
-        setSize(400, 300);
+        setSize(500, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setLayout(new GridBagLayout());
@@ -73,23 +73,18 @@ public class MainGUI extends JFrame {
         resultComboBox.addActionListener(e -> {
             String selectedResult = (String) resultComboBox.getSelectedItem();
             if (selectedResult != null) {
-                switch (selectedResult) {
-                    case "İddia təmin edildi":
-                        bankOfRepublicButton.setVisible(true);
-                        abcButton.setVisible(false);
-                        ferrumButton.setVisible(false);
-                        break;
-                    case "İddia qismən təmin edildi":
-
-                        abcButton.setVisible(true);
-                        ferrumButton.setVisible(true);
-                        bankOfRepublicButton.setVisible(false);
-                        break;
-                    default:
-                        bankOfRepublicButton.setVisible(false);
-                        abcButton.setVisible(false);
-                        ferrumButton.setVisible(false);
-                        break;
+                if (selectedResult.equals(proqramSozleri.get(2))) {
+                    bankOfRepublicButton.setVisible(true);
+                    abcButton.setVisible(false);
+                    ferrumButton.setVisible(false);
+                } else if (selectedResult.equals(proqramSozleri.get(3))) {
+                    abcButton.setVisible(true);
+                    ferrumButton.setVisible(true);
+                    bankOfRepublicButton.setVisible(false);
+                } else {
+                    bankOfRepublicButton.setVisible(false);
+                    abcButton.setVisible(false);
+                    ferrumButton.setVisible(false);
                 }
             }
         });
@@ -151,9 +146,8 @@ public class MainGUI extends JFrame {
 
         abcButton.addActionListener(e -> {
             try {
-                String[] prompts = SQLiteConnectionExample.bankOfRepublicSuallar().toArray(new String[0]);
+                String[] prompts = SQLiteConnectionExample.ABC2Telefon().toArray(new String[0]);
                 String[] values = new String[prompts.length];
-
 
                 JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
@@ -206,11 +200,7 @@ public class MainGUI extends JFrame {
         ferrumButton.addActionListener(e -> {
             try {
 
-                String[] prompts = {"Hakimin adını qeyd edin:","Cavabdehin adını qeyd edin:","Müqavilə tarixini qeyd edin:","Müqavilə nömrəsini qeyd edin :","Əsas borcu qeyd edin:","Cərimə borcu qeyd edin:","Dövlət rüsumunu qeyd edin:", "Cavabdeh krediti kim ilə bağlayıb:", "Məhsulun ümumi dəyərini qeyd edin:",
-                        "Məhsul neçə ay müddətinə verilmişdir:", "Maliyyə arayışının tarixini qeyd edin", "Maliyyə arayışında borcun hansı tarixə olduğunu qeyd edin:", "Cəmi nə qədər pul borclu olduğunu qeyd edin (Əsas borc + cərimə):"
-                       ,"Bildirişin tarixinin qeyd edin:" , "Dövlət büdcəsinə ödənilən rüsumun tarixini qeyd edin:","Qəbzin nömrəsini qeyd edin:"
-                        , "Cərimə məbləği azaldılaraq neçə manat saxlanılsın:", "Ümumi nə qədər məbləğ qət edilsin (Əsas borc + azaldılmış cərimə):"
-                        ,"Sədrlik edən:"};
+                String[] prompts = SQLiteConnectionExample.FerrumKapital2().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
                 JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);

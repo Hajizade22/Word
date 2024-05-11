@@ -3,6 +3,7 @@ package org.example;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.example.db.SQLiteConnectionExample;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,7 +18,7 @@ public class AbcDocument {
         File file = new File(filePath);
         if (file.exists()) {
             XWPFDocument doc = new XWPFDocument(new FileInputStream(file));
-            List<String> allowedWords = Arrays.asList("first", "second", "Name", "neQederBorcuVar", "rusum", "date", "serialNumber", "models", "mehsulunUmumiDeyeri", "neceAyliqVerilib", "ilkinOdenis", "everyMonth", "odenilmemisHisse", "musteriyeQuzest", "bugunedekOdenis", "neQederCerimeQalsin", "cerimeAzaldilandanSonraQalanMebleq", "third");
+            List<String> allowedWords = SQLiteConnectionExample.ABC1Telefon();
             Map<String, String> replacements = new HashMap<>();
             for (int i = 0; i < allowedWords.size(); i++) {
                 replacements.put(allowedWords.get(i), values[i]);
