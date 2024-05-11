@@ -40,6 +40,38 @@ public class SQLiteConnectionExample {
 
         return allowedWords;
     }
+    public static List<String> muessiseAdlari() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM muessiseAdlari";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("adlar"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> proqramSozleri() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM proqramdaIstifadeOlunanSozler";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("sozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
 
     public static void main(String[] args) {
         SQLiteDataSource dataSource = new SQLiteDataSource();

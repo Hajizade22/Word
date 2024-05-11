@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 public class MainGUI extends JFrame {
     private JComboBox<String> resultComboBox;
@@ -23,20 +24,20 @@ public class MainGUI extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 10, 10);
-
+        List<String> proqramSozleri = SQLiteConnectionExample.proqramSozleri();
         Font titleFont = new Font("Arial", Font.PLAIN, 24);
-        JLabel titleLabel = new JLabel("Kiçik iddialara dair elektron sistem", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel(proqramSozleri.get(0), SwingConstants.CENTER);
         titleLabel.setFont(titleFont);
         add(titleLabel, gbc);
 
-        JLabel selectLabel = new JLabel("İddianın nəticəsini seçin", SwingConstants.CENTER);
+        JLabel selectLabel = new JLabel(proqramSozleri.get(1), SwingConstants.CENTER);
         selectLabel.setFont(new Font("Arial", Font.ITALIC, 16));
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         add(selectLabel, gbc);
 
 
-        resultComboBox = new JComboBox<>(new String[]{"", "İddia təmin edildi", "İddia qismən təmin edildi"});
+        resultComboBox = new JComboBox<>(new String[]{"", proqramSozleri.get(2), proqramSozleri.get(3)});
         resultComboBox.setSelectedIndex(0);
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -44,9 +45,11 @@ public class MainGUI extends JFrame {
 
         JPanel buttonPanel = new JPanel(new BorderLayout());
         JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        bankOfRepublicButton = new JButton("Bank Respublika");
-        abcButton = new JButton("ABC Telecom");
-        ferrumButton = new JButton("Ferrum Kapital");
+
+        List<String> allowedWords = SQLiteConnectionExample.muessiseAdlari();
+        bankOfRepublicButton = new JButton(allowedWords.get(0));
+        abcButton = new JButton(allowedWords.get(1));
+        ferrumButton = new JButton(allowedWords.get(2));
         buttons.add(bankOfRepublicButton);
         buttons.add(abcButton);
         buttons.add(ferrumButton);
@@ -54,7 +57,7 @@ public class MainGUI extends JFrame {
         gbc.gridy = 3;
         add(buttonPanel, gbc);
 
-        JLabel authorLabel = new JLabel("müəllif Hacı Hacızadə", SwingConstants.RIGHT);
+        JLabel authorLabel = new JLabel(proqramSozleri.get(4), SwingConstants.RIGHT);
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.PAGE_END;
         add(authorLabel, gbc);
@@ -95,7 +98,7 @@ public class MainGUI extends JFrame {
         bankOfRepublicButton.addActionListener(e -> {
             try {
 
-                String[] prompts = {"Hakimin adını qeyd edin:", "Katibin adını qeyd edin:", "Cavabdehin adını qeyd edin:", "Müqavilə tarixini qeyd edin:", "Müqavilə nömrəsini qeyd edin (Misal 012CASA və ya 012REST):", "Əsas borcu qeyd edin:", "Faiz borcu qeyd edin:", "Cəm məbləği qeyd edin:", "Dövlət rüsumunu qeyd edin:", "Kredit müştəriyə neçə aylıq verilib:", "Kredit neçə faizlə verilibdir :", "Neçə manat məbləğində kredit verilmişdir:", "Sədrlik edən:"};
+                String[] prompts = SQLiteConnectionExample.bankOfRepublicSuallar().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
                 JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
