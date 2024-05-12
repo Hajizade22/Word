@@ -46,7 +46,7 @@ public class MainGUI extends JFrame {
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 10, 10);
         List<String> proqramSozleri = SQLiteConnectionExample.proqramSozleri();
-        Font titleFont = new Font("Arial", Font.BOLD, 48);
+        Font titleFont = new Font("Times New Roman", Font.BOLD, 48);
         JLabel titleLabel = new JLabel(proqramSozleri.get(0), SwingConstants.CENTER);
         titleLabel.setFont(titleFont);
         titleLabel.setForeground(Color.WHITE);
@@ -55,7 +55,7 @@ public class MainGUI extends JFrame {
         add(titleLabel, gbc);
 
         JLabel selectLabel = new JLabel(proqramSozleri.get(1), SwingConstants.CENTER);
-        selectLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        selectLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
         selectLabel.setForeground(Color.WHITE);
         selectLabel.setOpaque(true);
         selectLabel.setBackground(new Color(0, 0, 0, 180));
@@ -68,6 +68,7 @@ public class MainGUI extends JFrame {
         resultComboBox.setOpaque(false);
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.CENTER;
+        resultComboBox.setFont(new Font("Times New Roman", Font.BOLD, 20));
         add(resultComboBox, gbc);
 
         JPanel buttonPanel = new JPanel(new BorderLayout());
@@ -78,6 +79,11 @@ public class MainGUI extends JFrame {
         ferrumButton = new JButton(allowedWords.get(2));
         abcmehsulButton=new JButton(allowedWords.get(3));
         ferrumKatibliButton = new JButton(allowedWords.get(4));
+        bankOfRepublicButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        abcButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        ferrumButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        abcmehsulButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        ferrumKatibliButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         buttons.add(bankOfRepublicButton);
         buttons.add(abcButton);
         buttons.add(ferrumButton);
@@ -91,7 +97,8 @@ public class MainGUI extends JFrame {
 
         JLabel authorLabel = new JLabel(proqramSozleri.get(4), SwingConstants.RIGHT);
         authorLabel.setForeground(Color.WHITE);
-        authorLabel.setFont(new Font("Arial", Font.BOLD, 20));
+//        gbc.ipady = 100;
+        authorLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.PAGE_END;
         authorLabel.setOpaque(true);
