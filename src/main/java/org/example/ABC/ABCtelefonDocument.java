@@ -1,23 +1,21 @@
-package org.example;
+package org.example.ABC;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.example.db.SQLiteConnectionExample;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
-public class AbcDocument {
+public class ABCtelefonDocument {
     private static final String filePath = "C:\\Users\\Haci\\OneDrive\\Рабочий стол\\Abc sablon.docx";
 
     public static void processDocument(String[] values) throws IOException {
-        File file = new File(filePath);
-        if (file.exists()) {
-            XWPFDocument doc = new XWPFDocument(new FileInputStream(file));
+        List<byte[]> fileDataList = SQLiteConnectionExample.wordFiles();
+        if (!fileDataList.isEmpty()) {
+            byte[] fileData = fileDataList.get(1);
+            XWPFDocument doc = new XWPFDocument(new ByteArrayInputStream(fileData));
             List<String> allowedWords = SQLiteConnectionExample.ABC1Telefon();
             Map<String, String> replacements = new HashMap<>();
             for (int i = 0; i < allowedWords.size(); i++) {

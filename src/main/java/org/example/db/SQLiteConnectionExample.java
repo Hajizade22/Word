@@ -8,6 +8,27 @@ import java.util.List;
 public class SQLiteConnectionExample {
     private static final String DATABASE_URL = "jdbc:sqlite:C:\\Users\\Haci\\IdeaProjects\\Word\\src\\main\\resources\\db\\iddia.db";
 
+    public static List<byte[]> wordFiles() {
+        List<byte[]> fileDataList = new ArrayList<>();
+        String query = "SELECT * FROM wordFiles";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                byte[] fileData = resultSet.getBytes("files");
+                fileDataList.add(fileData);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return fileDataList;
+    }
+
+
+
+
     public static List<String> getAllowedWords() {
         List<String> allowedWords = new ArrayList<>();
         String query = "SELECT * FROM bankOfRepublic1";
@@ -58,7 +79,40 @@ public class SQLiteConnectionExample {
     }
     public static List<String> ABC2Telefon() {
         List<String> allowedWords = new ArrayList<>();
-        String query = "SELECT * FROM ABC2Telefon";
+        String query = "SELECT * FROM ABC2telefon";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("deyisilmeliSozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+
+    public static List<String> ABC1Mehsul() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM ABC1mehsul";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("sozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> ABC2Mehsul() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM ABC2mehsul";
 
         try (Connection connection = DriverManager.getConnection(DATABASE_URL);
              Statement statement = connection.createStatement();

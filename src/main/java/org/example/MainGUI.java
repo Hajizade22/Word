@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.ABC.ABCmehsulDocument;
+import org.example.ABC.ABCtelefonDocument;
+import org.example.BankOfRepublic.BankOfRepublicDocument;
+import org.example.Ferrum.FerrumDocument;
 import org.example.db.SQLiteConnectionExample;
 
 import javax.swing.*;
@@ -13,10 +17,11 @@ public class MainGUI extends JFrame {
     private JButton bankOfRepublicButton;
     private JButton abcButton;
     private JButton ferrumButton;
+    private JButton abcmehsulButton;
 
     public MainGUI() {
         setTitle("Astara rayon Məhkəməsi");
-        setSize(500, 500);
+        setSize(800, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setLayout(new GridBagLayout());
@@ -50,9 +55,11 @@ public class MainGUI extends JFrame {
         bankOfRepublicButton = new JButton(allowedWords.get(0));
         abcButton = new JButton(allowedWords.get(1));
         ferrumButton = new JButton(allowedWords.get(2));
+        abcmehsulButton=new JButton(allowedWords.get(3));
         buttons.add(bankOfRepublicButton);
         buttons.add(abcButton);
         buttons.add(ferrumButton);
+        buttons.add(abcmehsulButton);
         buttonPanel.add(buttons, BorderLayout.CENTER);
         gbc.gridy = 3;
         add(buttonPanel, gbc);
@@ -68,7 +75,7 @@ public class MainGUI extends JFrame {
         bankOfRepublicButton.setVisible(false);
         abcButton.setVisible(false);
         ferrumButton.setVisible(false);
-
+        abcmehsulButton.setVisible(false);
 
         resultComboBox.addActionListener(e -> {
             String selectedResult = (String) resultComboBox.getSelectedItem();
@@ -77,14 +84,17 @@ public class MainGUI extends JFrame {
                     bankOfRepublicButton.setVisible(true);
                     abcButton.setVisible(false);
                     ferrumButton.setVisible(false);
+                    abcmehsulButton.setVisible(false);
                 } else if (selectedResult.equals(proqramSozleri.get(3))) {
                     abcButton.setVisible(true);
                     ferrumButton.setVisible(true);
+                    abcmehsulButton.setVisible(true);
                     bankOfRepublicButton.setVisible(false);
                 } else {
                     bankOfRepublicButton.setVisible(false);
                     abcButton.setVisible(false);
                     ferrumButton.setVisible(false);
+                    abcmehsulButton.setVisible(false);
                 }
             }
         });
@@ -176,20 +186,20 @@ public class MainGUI extends JFrame {
                     for (int i = 0; i < prompts.length; i++) {
                         values[i] = textFields[i].getText();
                     }
-                    dialog.dispose(); // Закрытие диалогового окна
+                    dialog.dispose();
                 });
 
-                // Действие при нажатии кнопки "Отмена"
+
                 cancelButton.addActionListener(cancelEvent -> {
-                    Arrays.fill(values, null); // Очистка массива значений
-                    dialog.dispose(); // Закрытие диалогового окна
+                    Arrays.fill(values, null);
+                    dialog.dispose();
                 });
 
                 // Установка размеров окна и его видимость
                 dialog.setSize(1500, 900);
                 dialog.setVisible(true);
 
-                AbcDocument.processDocument(values);
+                ABCtelefonDocument.processDocument(values);
                 JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
@@ -197,6 +207,58 @@ public class MainGUI extends JFrame {
             }
         });
 
+        abcmehsulButton.addActionListener(e -> {
+            try {
+                String[] prompts = SQLiteConnectionExample.ABC2Mehsul().toArray(new String[0]);
+                String[] values = new String[prompts.length];
+
+                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                dialog.setLayout(new GridLayout(prompts.length + 1, 2));
+
+
+                JTextField[] textFields = new JTextField[prompts.length];
+                for (int i = 0; i < prompts.length; i++) {
+                    JLabel label = new JLabel(prompts[i]);
+                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    dialog.add(label);
+
+                    textFields[i] = new JTextField();
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    dialog.add(textFields[i]);
+                }
+
+
+                JButton okButton = new JButton("Qətnamə yarat");
+                JButton cancelButton = new JButton("İmtina");
+                dialog.add(okButton);
+                dialog.add(cancelButton);
+
+
+                okButton.addActionListener(okEvent -> {
+
+                    for (int i = 0; i < prompts.length; i++) {
+                        values[i] = textFields[i].getText();
+                    }
+                    dialog.dispose();
+                });
+
+
+                cancelButton.addActionListener(cancelEvent -> {
+                    Arrays.fill(values, null);
+                    dialog.dispose();
+                });
+
+
+                dialog.setSize(1500, 900);
+                dialog.setVisible(true);
+
+                ABCmehsulDocument.processDocument(values);
+                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Xəta baş verdi " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        });
         ferrumButton.addActionListener(e -> {
             try {
 

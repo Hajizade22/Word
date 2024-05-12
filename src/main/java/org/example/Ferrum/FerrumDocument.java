@@ -1,25 +1,24 @@
-package org.example;
+package org.example.Ferrum;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.example.db.SQLiteConnectionExample;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.*;
+import java.io.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class BankOfRepublicDocument {
-    private static  String filePath = "C:\\Users\\Haci\\OneDrive\\Рабочий стол\\qt.docx";
+public class FerrumDocument {
 
     public static void processDocument(String[] values) throws IOException {
-
-        File file = new File(filePath);
-        if (file.exists()) {
-            XWPFDocument doc = new XWPFDocument(new FileInputStream(file));
-            List<String> allowedWords = SQLiteConnectionExample.getAllowedWords();
+        List<byte[]> fileDataList = SQLiteConnectionExample.wordFiles();
+        if (!fileDataList.isEmpty()) {
+            byte[] fileData = fileDataList.get(3);
+            XWPFDocument doc = new XWPFDocument(new ByteArrayInputStream(fileData));
+            List<String> allowedWords = SQLiteConnectionExample.FerrumKapital1();
             Map<String, String> replacements = new HashMap<>();
             for (int i = 0; i < allowedWords.size(); i++) {
                 replacements.put(allowedWords.get(i), values[i]);
@@ -27,7 +26,7 @@ public class BankOfRepublicDocument {
             for (XWPFParagraph paragraph : doc.getParagraphs()) {
                 for (XWPFRun run : paragraph.getRuns()) {
                     String text = run.getText(0);
-                    if (text != null ) {
+                    if (text != null) {
                         for (String word : allowedWords) {
                             if (text.contains(word)) {
                                 text = text.replace(word, replacements.get(word));
@@ -39,10 +38,10 @@ public class BankOfRepublicDocument {
             }
             String outputFileName = "Astara018" + System.currentTimeMillis() + ".docx";
             FileOutputStream out = new FileOutputStream(outputFileName);
+            System.out.println("Документ успешно изменен. Новый документ сохранен как '" + outputFileName + "'.");
             doc.write(out);
             out.close();
             doc.close();
-            System.out.println("Документ успешно изменен. Новый документ сохранен как '" + outputFileName + "'.");
         } else {
             System.out.println("Файл не найден.");
         }
