@@ -159,6 +159,39 @@ public class SQLiteConnectionExample {
 
         return allowedWords;
     }
+
+    public static List<String> FerrumKapital1Katibli() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM FerrumKapital1Katibli";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("sozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> FerrumKapital2Katibli() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM FerrumKapital2Katibli";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("deyisilmeliSozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
     public static List<String> muessiseAdlari() {
         List<String> allowedWords = new ArrayList<>();
         String query = "SELECT * FROM muessiseAdlari";
