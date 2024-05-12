@@ -5,6 +5,7 @@ import org.example.ABC.ABCtelefonDocument;
 import org.example.BankOfRepublic.BankOfRepublicDocument;
 import org.example.Ferrum.FerrumDocument;
 import org.example.Ferrum.FerrumKatibliDocument;
+import org.example.Unibank.UnibankDocument;
 import org.example.db.SQLiteConnectionExample;
 
 import javax.imageio.ImageIO;
@@ -23,6 +24,7 @@ public class MainGUI extends JFrame {
     private JButton ferrumButton;
     private JButton ferrumKatibliButton;
     private JButton abcmehsulButton;
+    private JButton unibankButton;
 
     public MainGUI() {
         setTitle("Astara rayon Məhkəməsi");
@@ -79,16 +81,19 @@ public class MainGUI extends JFrame {
         ferrumButton = new JButton(allowedWords.get(2));
         abcmehsulButton=new JButton(allowedWords.get(3));
         ferrumKatibliButton = new JButton(allowedWords.get(4));
+        unibankButton = new JButton(allowedWords.get(5));
         bankOfRepublicButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         abcButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         ferrumButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         abcmehsulButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         ferrumKatibliButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        unibankButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         buttons.add(bankOfRepublicButton);
         buttons.add(abcButton);
         buttons.add(ferrumButton);
         buttons.add(abcmehsulButton);
         buttons.add(ferrumKatibliButton);
+        buttons.add(unibankButton);
         buttons.setOpaque(false);
         buttonPanel.add(buttons, BorderLayout.CENTER);
         buttonPanel.setOpaque(false);
@@ -114,12 +119,14 @@ public class MainGUI extends JFrame {
         ferrumButton.setVisible(false);
         abcmehsulButton.setVisible(false);
         ferrumKatibliButton.setVisible(false);
+        unibankButton.setVisible(false);
 
         resultComboBox.addActionListener(e -> {
             String selectedResult = (String) resultComboBox.getSelectedItem();
             if (selectedResult != null) {
                 if (selectedResult.equals(proqramSozleri.get(2))) {
                     bankOfRepublicButton.setVisible(true);
+                    unibankButton.setVisible(true);
                     abcButton.setVisible(false);
                     ferrumButton.setVisible(false);
                     abcmehsulButton.setVisible(false);
@@ -130,12 +137,14 @@ public class MainGUI extends JFrame {
                     abcmehsulButton.setVisible(true);
                     ferrumKatibliButton.setVisible(true);
                     bankOfRepublicButton.setVisible(false);
+                    unibankButton.setVisible(false);
                 } else {
                     bankOfRepublicButton.setVisible(false);
                     abcButton.setVisible(false);
                     ferrumButton.setVisible(false);
                     abcmehsulButton.setVisible(false);
                     ferrumKatibliButton.setVisible(false);
+                    unibankButton.setVisible(false);
                 }
             }
         });
@@ -185,6 +194,58 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 BankOfRepublicDocument.processDocument(values);
+                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        });
+        unibankButton.addActionListener(e -> {
+            try {
+
+                String[] prompts = SQLiteConnectionExample.Unibank2().toArray(new String[0]);
+                String[] values = new String[prompts.length];
+
+                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                dialog.setLayout(new GridLayout(prompts.length + 1, 2));
+
+                JTextField[] textFields = new JTextField[prompts.length];
+                for (int i = 0; i < prompts.length; i++) {
+                    JLabel label = new JLabel(prompts[i]);
+                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    dialog.add(label);
+
+                    textFields[i] = new JTextField();
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    dialog.add(textFields[i]);
+                }
+
+
+                JButton okButton = new JButton("Qətnamə yarat");
+                JButton cancelButton = new JButton("İmtina");
+                dialog.add(okButton);
+                dialog.add(cancelButton);
+
+
+                okButton.addActionListener(okEvent -> {
+
+                    for (int i = 0; i < prompts.length; i++) {
+                        values[i] = textFields[i].getText();
+                    }
+                    dialog.dispose();
+                });
+
+
+                cancelButton.addActionListener(cancelEvent -> {
+                    Arrays.fill(values, null);
+                    dialog.dispose();
+                });
+
+
+                dialog.setSize(1500, 900);
+                dialog.setVisible(true);
+
+                UnibankDocument.processDocument(values);
                 JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
