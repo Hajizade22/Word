@@ -11,6 +11,7 @@ import org.example.Unibank.UnibankDocument;
 import org.example.Unibank.UnibankLimitDocument;
 import org.example.Unibank.UnibankOfertaDocument;
 import org.example.db.SQLiteConnectionExample;
+import org.example.Irshad.IrshadDocument;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -29,6 +30,7 @@ public class MainGUI extends JFrame {
     private JButton ferrumKatibliButton;
     private JButton abcmehsulButton;
     private JButton abcMehsullarButton;
+    private JButton irshadButton;
     private JButton unibankButton;
     private JButton unibankOfertaButton;
     private JButton unibankLimitButton;
@@ -87,29 +89,32 @@ public class MainGUI extends JFrame {
         bankOfRepublicButton = new JButton(allowedWords.get(0));
         abcButton = new JButton(allowedWords.get(1));
         ferrumButton = new JButton(allowedWords.get(2));
-        abcmehsulButton=new JButton(allowedWords.get(3));
+        abcmehsulButton = new JButton(allowedWords.get(3));
         ferrumKatibliButton = new JButton(allowedWords.get(4));
         unibankButton = new JButton(allowedWords.get(5));
         unibankOfertaButton = new JButton(allowedWords.get(6));
         KapitalBankButton = new JButton(allowedWords.get(7));
         unibankLimitButton = new JButton(allowedWords.get(8));
         abcMehsullarButton = new JButton(allowedWords.get(9));
-        bankOfRepublicButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        abcButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        ferrumButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        abcmehsulButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        ferrumKatibliButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        unibankButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        unibankOfertaButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        unibankLimitButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        KapitalBankButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        abcMehsullarButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        irshadButton = new JButton(allowedWords.get(10));
+        bankOfRepublicButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        abcButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        ferrumButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        abcmehsulButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        ferrumKatibliButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        unibankButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        unibankOfertaButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        unibankLimitButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        KapitalBankButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        abcMehsullarButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        irshadButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
         buttons.add(bankOfRepublicButton);
         buttons.add(abcButton);
         buttons.add(abcmehsulButton);
         buttons.add(abcMehsullarButton);
         buttons.add(ferrumButton);
         buttons.add(ferrumKatibliButton);
+        buttons.add(irshadButton);
         buttons.add(unibankButton);
         buttons.add(unibankOfertaButton);
         buttons.add(unibankLimitButton);
@@ -130,7 +135,6 @@ public class MainGUI extends JFrame {
         add(authorLabel, gbc);
 
 
-
         setVisible(true);
 
         bankOfRepublicButton.setVisible(false);
@@ -139,6 +143,7 @@ public class MainGUI extends JFrame {
         abcmehsulButton.setVisible(false);
         abcMehsullarButton.setVisible(false);
         ferrumKatibliButton.setVisible(false);
+        irshadButton.setVisible(false);
         unibankButton.setVisible(false);
         unibankOfertaButton.setVisible(false);
         unibankLimitButton.setVisible(false);
@@ -158,12 +163,14 @@ public class MainGUI extends JFrame {
                     abcmehsulButton.setVisible(false);
                     abcMehsullarButton.setVisible(false);
                     ferrumKatibliButton.setVisible(false);
+                    irshadButton.setVisible(false);
                 } else if (selectedResult.equals(proqramSozleri.get(3))) {
                     abcButton.setVisible(true);
                     ferrumButton.setVisible(true);
                     abcmehsulButton.setVisible(true);
                     abcMehsullarButton.setVisible(true);
                     ferrumKatibliButton.setVisible(true);
+                    irshadButton.setVisible(true);
                     bankOfRepublicButton.setVisible(false);
                     unibankButton.setVisible(false);
                     unibankOfertaButton.setVisible(false);
@@ -175,6 +182,7 @@ public class MainGUI extends JFrame {
                     ferrumButton.setVisible(false);
                     abcmehsulButton.setVisible(false);
                     abcMehsullarButton.setVisible(false);
+                    irshadButton.setVisible(false);
                     ferrumKatibliButton.setVisible(false);
                     unibankButton.setVisible(false);
                     unibankOfertaButton.setVisible(false);
@@ -189,17 +197,17 @@ public class MainGUI extends JFrame {
                 String[] prompts = SQLiteConnectionExample.bankOfRepublicSuallar().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
-                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
 
                 JTextField[] textFields = new JTextField[prompts.length];
                 for (int i = 0; i < prompts.length; i++) {
                     JLabel label = new JLabel(prompts[i]);
-                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
                     dialog.add(label);
 
                     textFields[i] = new JTextField();
-                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
                     dialog.add(textFields[i]);
                 }
 
@@ -241,17 +249,17 @@ public class MainGUI extends JFrame {
                 String[] prompts = SQLiteConnectionExample.Unibank2().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
-                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
 
                 JTextField[] textFields = new JTextField[prompts.length];
                 for (int i = 0; i < prompts.length; i++) {
                     JLabel label = new JLabel(prompts[i]);
-                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
                     dialog.add(label);
 
                     textFields[i] = new JTextField();
-                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
                     dialog.add(textFields[i]);
                 }
 
@@ -293,17 +301,17 @@ public class MainGUI extends JFrame {
                 String[] prompts = SQLiteConnectionExample.Unibank2Oferta().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
-                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
 
                 JTextField[] textFields = new JTextField[prompts.length];
                 for (int i = 0; i < prompts.length; i++) {
                     JLabel label = new JLabel(prompts[i]);
-                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
                     dialog.add(label);
 
                     textFields[i] = new JTextField();
-                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
                     dialog.add(textFields[i]);
                 }
 
@@ -344,17 +352,17 @@ public class MainGUI extends JFrame {
                 String[] prompts = SQLiteConnectionExample.Unibank2Limit().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
-                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
 
                 JTextField[] textFields = new JTextField[prompts.length];
                 for (int i = 0; i < prompts.length; i++) {
                     JLabel label = new JLabel(prompts[i]);
-                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
                     dialog.add(label);
 
                     textFields[i] = new JTextField();
-                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
                     dialog.add(textFields[i]);
                 }
 
@@ -394,17 +402,17 @@ public class MainGUI extends JFrame {
                 String[] prompts = SQLiteConnectionExample.KapitalBank2().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
-                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
 
                 JTextField[] textFields = new JTextField[prompts.length];
                 for (int i = 0; i < prompts.length; i++) {
                     JLabel label = new JLabel(prompts[i]);
-                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
                     dialog.add(label);
 
                     textFields[i] = new JTextField();
-                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
                     dialog.add(textFields[i]);
                 }
 
@@ -445,18 +453,18 @@ public class MainGUI extends JFrame {
                 String[] prompts = SQLiteConnectionExample.ABC2Telefon().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
-                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
 
 
                 JTextField[] textFields = new JTextField[prompts.length];
                 for (int i = 0; i < prompts.length; i++) {
                     JLabel label = new JLabel(prompts[i]);
-                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
                     dialog.add(label);
 
                     textFields[i] = new JTextField();
-                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
                     dialog.add(textFields[i]);
                 }
 
@@ -498,18 +506,18 @@ public class MainGUI extends JFrame {
                 String[] prompts = SQLiteConnectionExample.ABC2Mehsul().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
-                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
 
 
                 JTextField[] textFields = new JTextField[prompts.length];
                 for (int i = 0; i < prompts.length; i++) {
                     JLabel label = new JLabel(prompts[i]);
-                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
                     dialog.add(label);
 
                     textFields[i] = new JTextField();
-                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
                     dialog.add(textFields[i]);
                 }
 
@@ -550,18 +558,18 @@ public class MainGUI extends JFrame {
                 String[] prompts = SQLiteConnectionExample.ABC2Mehsullar().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
-                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
 
 
                 JTextField[] textFields = new JTextField[prompts.length];
                 for (int i = 0; i < prompts.length; i++) {
                     JLabel label = new JLabel(prompts[i]);
-                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
                     dialog.add(label);
 
                     textFields[i] = new JTextField();
-                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
                     dialog.add(textFields[i]);
                 }
 
@@ -603,17 +611,17 @@ public class MainGUI extends JFrame {
                 String[] prompts = SQLiteConnectionExample.FerrumKapital2().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
-                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
 
                 JTextField[] textFields = new JTextField[prompts.length];
                 for (int i = 0; i < prompts.length; i++) {
                     JLabel label = new JLabel(prompts[i]);
-                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
                     dialog.add(label);
 
                     textFields[i] = new JTextField();
-                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
                     dialog.add(textFields[i]);
                 }
 
@@ -656,17 +664,17 @@ public class MainGUI extends JFrame {
                 String[] prompts = SQLiteConnectionExample.FerrumKapital2Katibli().toArray(new String[0]);
                 String[] values = new String[prompts.length];
 
-                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
                 dialog.setLayout(new GridLayout(prompts.length + 1, 2));
 
                 JTextField[] textFields = new JTextField[prompts.length];
                 for (int i = 0; i < prompts.length; i++) {
                     JLabel label = new JLabel(prompts[i]);
-                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
                     dialog.add(label);
 
                     textFields[i] = new JTextField();
-                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
                     dialog.add(textFields[i]);
                 }
 
@@ -696,6 +704,58 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 FerrumKatibliDocument.processDocument(values);
+                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        });
+        irshadButton.addActionListener(e -> {
+            try {
+
+                String[] prompts = SQLiteConnectionExample.Irshad2().toArray(new String[0]);
+                String[] values = new String[prompts.length];
+
+                JDialog dialog = new JDialog((Frame) null, "Məlumatları qeyd edin", true);
+                dialog.setLayout(new GridLayout(prompts.length + 1, 2));
+
+                JTextField[] textFields = new JTextField[prompts.length];
+                for (int i = 0; i < prompts.length; i++) {
+                    JLabel label = new JLabel(prompts[i]);
+                    label.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 20));
+                    dialog.add(label);
+
+                    textFields[i] = new JTextField();
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 30));
+                    dialog.add(textFields[i]);
+                }
+
+
+                JButton okButton = new JButton("Qətnamə yarat");
+                JButton cancelButton = new JButton("İmtina");
+                dialog.add(okButton);
+                dialog.add(cancelButton);
+
+
+                okButton.addActionListener(okEvent -> {
+
+                    for (int i = 0; i < prompts.length; i++) {
+                        values[i] = textFields[i].getText();
+                    }
+                    dialog.dispose();
+                });
+
+
+                cancelButton.addActionListener(cancelEvent -> {
+                    Arrays.fill(values, null);
+                    dialog.dispose();
+                });
+
+
+                dialog.setSize(1500, 900);
+                dialog.setVisible(true);
+
+                IrshadDocument.processDocument(values);
                 JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
