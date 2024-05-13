@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.ABC.ABCMehsullarDocument;
 import org.example.ABC.ABCmehsulDocument;
 import org.example.ABC.ABCtelefonDocument;
 import org.example.BankOfRepublic.BankOfRepublicDocument;
@@ -27,6 +28,7 @@ public class MainGUI extends JFrame {
     private JButton ferrumButton;
     private JButton ferrumKatibliButton;
     private JButton abcmehsulButton;
+    private JButton abcMehsullarButton;
     private JButton unibankButton;
     private JButton unibankOfertaButton;
     private JButton unibankLimitButton;
@@ -91,6 +93,7 @@ public class MainGUI extends JFrame {
         unibankOfertaButton = new JButton(allowedWords.get(6));
         KapitalBankButton = new JButton(allowedWords.get(7));
         unibankLimitButton = new JButton(allowedWords.get(8));
+        abcMehsullarButton = new JButton(allowedWords.get(9));
         bankOfRepublicButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         abcButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         ferrumButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -100,10 +103,12 @@ public class MainGUI extends JFrame {
         unibankOfertaButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         unibankLimitButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         KapitalBankButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        abcMehsullarButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         buttons.add(bankOfRepublicButton);
         buttons.add(abcButton);
-        buttons.add(ferrumButton);
         buttons.add(abcmehsulButton);
+        buttons.add(abcMehsullarButton);
+        buttons.add(ferrumButton);
         buttons.add(ferrumKatibliButton);
         buttons.add(unibankButton);
         buttons.add(unibankOfertaButton);
@@ -132,6 +137,7 @@ public class MainGUI extends JFrame {
         abcButton.setVisible(false);
         ferrumButton.setVisible(false);
         abcmehsulButton.setVisible(false);
+        abcMehsullarButton.setVisible(false);
         ferrumKatibliButton.setVisible(false);
         unibankButton.setVisible(false);
         unibankOfertaButton.setVisible(false);
@@ -150,11 +156,13 @@ public class MainGUI extends JFrame {
                     abcButton.setVisible(false);
                     ferrumButton.setVisible(false);
                     abcmehsulButton.setVisible(false);
+                    abcMehsullarButton.setVisible(false);
                     ferrumKatibliButton.setVisible(false);
                 } else if (selectedResult.equals(proqramSozleri.get(3))) {
                     abcButton.setVisible(true);
                     ferrumButton.setVisible(true);
                     abcmehsulButton.setVisible(true);
+                    abcMehsullarButton.setVisible(true);
                     ferrumKatibliButton.setVisible(true);
                     bankOfRepublicButton.setVisible(false);
                     unibankButton.setVisible(false);
@@ -166,6 +174,7 @@ public class MainGUI extends JFrame {
                     abcButton.setVisible(false);
                     ferrumButton.setVisible(false);
                     abcmehsulButton.setVisible(false);
+                    abcMehsullarButton.setVisible(false);
                     ferrumKatibliButton.setVisible(false);
                     unibankButton.setVisible(false);
                     unibankOfertaButton.setVisible(false);
@@ -530,6 +539,58 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 ABCmehsulDocument.processDocument(values);
+                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Xəta baş verdi " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        });
+        abcMehsullarButton.addActionListener(e -> {
+            try {
+                String[] prompts = SQLiteConnectionExample.ABC2Mehsullar().toArray(new String[0]);
+                String[] values = new String[prompts.length];
+
+                JDialog dialog = new JDialog((Frame)null, "Məlumatları qeyd edin", true);
+                dialog.setLayout(new GridLayout(prompts.length + 1, 2));
+
+
+                JTextField[] textFields = new JTextField[prompts.length];
+                for (int i = 0; i < prompts.length; i++) {
+                    JLabel label = new JLabel(prompts[i]);
+                    label.setFont(new Font("Arial", Font.ITALIC| Font.BOLD, 20));
+                    dialog.add(label);
+
+                    textFields[i] = new JTextField();
+                    textFields[i].setFont(new Font("Arial", Font.ITALIC| Font.BOLD,30));
+                    dialog.add(textFields[i]);
+                }
+
+
+                JButton okButton = new JButton("Qətnamə yarat");
+                JButton cancelButton = new JButton("İmtina");
+                dialog.add(okButton);
+                dialog.add(cancelButton);
+
+
+                okButton.addActionListener(okEvent -> {
+
+                    for (int i = 0; i < prompts.length; i++) {
+                        values[i] = textFields[i].getText();
+                    }
+                    dialog.dispose();
+                });
+
+
+                cancelButton.addActionListener(cancelEvent -> {
+                    Arrays.fill(values, null);
+                    dialog.dispose();
+                });
+
+
+                dialog.setSize(1500, 900);
+                dialog.setVisible(true);
+
+                ABCMehsullarDocument.processDocument(values);
                 JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
