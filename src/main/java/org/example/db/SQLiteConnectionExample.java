@@ -226,7 +226,102 @@ public class SQLiteConnectionExample {
         return allowedWords;
     }
 
+    public static List<String> Unibank1Oferta() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM Unibank1Oferta";
 
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("sozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> Unibank2Oferta() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM Unibank2Oferta";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("deyisilmeliSozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> Unibank1Limit() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM Unibank1Limit";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("sozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> Unibank2Limit() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM Unibank2Limit";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("deyisilmeliSozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> KapitalBank1() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM KapitalBank1";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("sozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
+    public static List<String> KapitalBank2() {
+        List<String> allowedWords = new ArrayList<>();
+        String query = "SELECT * FROM KapitalBank2";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                allowedWords.add(resultSet.getString("deyisilmeliSozler"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return allowedWords;
+    }
     public static List<String> muessiseAdlari() {
         List<String> allowedWords = new ArrayList<>();
         String query = "SELECT * FROM muessiseAdlari";
