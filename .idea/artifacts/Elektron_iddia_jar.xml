@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="Document-Parser:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Document_Parser_jar</output-path>
-    <root id="archive" name="Document-Parser.jar">
-      <element id="module-output" name="Document-Parser" />
+  <artifact type="jar" name="Elektron-iddia:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Elektron_iddia_jar</output-path>
+    <root id="archive" name="Elektron-iddia.jar">
+      <element id="module-output" name="Elektron-iddia" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/virtuald/curvesapi/1.06/curvesapi-1.06.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/poi/poi-ooxml/4.1.2/poi-ooxml-4.1.2.jar" path-in-jar="/" />
