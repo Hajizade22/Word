@@ -5,13 +5,14 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.example.db.SQLiteConnectionExample;
 
+import javax.swing.*;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 public class IrshadDocument {
 
     public static void processDocument(String[] values) throws IOException {
@@ -37,14 +38,31 @@ public class IrshadDocument {
                     }
                 }
             }
-            String outputFileName = "Astara018" + System.currentTimeMillis() + ".docx";
-            FileOutputStream out = new FileOutputStream(outputFileName);
-            System.out.println("Документ успешно изменен. Новый документ сохранен как '" + outputFileName + "'.");
-            doc.write(out);
-            out.close();
-            doc.close();
+            String outputPath = showSaveFileDialog();
+            if (outputPath != null) {
+                String outputFileName = outputPath + File.separator + "Astara" + System.currentTimeMillis() + ".docx";
+                FileOutputStream out = new FileOutputStream(outputFileName);
+                doc.write(out);
+                out.close();
+                doc.close();
+                System.out.println("Документ успешно изменен. Новый документ сохранен как '" + outputFileName + "'.");
+            } else {
+                System.out.println("Отменено пользователем.");
+            }
         } else {
             System.out.println("Файл не найден.");
         }
+    }
+
+    private static String showSaveFileDialog() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Выберите папку для сохранения файла");
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int userSelection = fileChooser.showSaveDialog(null);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            return fileToSave.getAbsolutePath();
+        }
+        return null;
     }
 }

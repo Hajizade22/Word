@@ -5,6 +5,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.example.db.SQLiteConnectionExample;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
@@ -33,14 +34,32 @@ public class BankOfRepublicDocument {
                     }
                 }
             }
-            String outputFileName = "Astara018" + System.currentTimeMillis() + ".docx";
-            FileOutputStream out = new FileOutputStream(outputFileName);
-            doc.write(out);
-            out.close();
-            doc.close();
-            System.out.println("Документ успешно изменен. Новый документ сохранен как '" + outputFileName + "'.");
+
+            String outputPath = showSaveFileDialog();
+            if (outputPath != null) {
+                String outputFileName = outputPath + File.separator + "Astara" + System.currentTimeMillis() + ".docx";
+                FileOutputStream out = new FileOutputStream(outputFileName);
+                doc.write(out);
+                out.close();
+                doc.close();
+                System.out.println("Документ успешно изменен. Новый документ сохранен как '" + outputFileName + "'.");
+            } else {
+                System.out.println("Отменено пользователем.");
+            }
         } else {
             System.out.println("Файл не найден.");
         }
+    }
+
+    private static String showSaveFileDialog() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Выберите папку для сохранения файла");
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int userSelection = fileChooser.showSaveDialog(null);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            return fileToSave.getAbsolutePath();
+        }
+        return null;
     }
 }

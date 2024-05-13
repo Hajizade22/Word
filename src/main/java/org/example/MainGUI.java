@@ -97,17 +97,17 @@ public class MainGUI extends JFrame {
         unibankLimitButton = new JButton(allowedWords.get(8));
         abcMehsullarButton = new JButton(allowedWords.get(9));
         irshadButton = new JButton(allowedWords.get(10));
-        bankOfRepublicButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        abcButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        ferrumButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        abcmehsulButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        ferrumKatibliButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        unibankButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        unibankOfertaButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        unibankLimitButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        KapitalBankButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        abcMehsullarButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        irshadButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        bankOfRepublicButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        abcButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        ferrumButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        abcmehsulButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        ferrumKatibliButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        unibankButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        unibankOfertaButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        unibankLimitButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        KapitalBankButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        abcMehsullarButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        irshadButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
         buttons.add(bankOfRepublicButton);
         buttons.add(abcButton);
         buttons.add(abcmehsulButton);
@@ -124,7 +124,6 @@ public class MainGUI extends JFrame {
         buttonPanel.setOpaque(false);
         gbc.gridy = 3;
         add(buttonPanel, gbc);
-
         JLabel authorLabel = new JLabel(proqramSozleri.get(4), SwingConstants.RIGHT);
         authorLabel.setForeground(Color.WHITE);
         authorLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -237,7 +236,6 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 BankOfRepublicDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -289,7 +287,6 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 UnibankDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -339,7 +336,7 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 UnibankOfertaDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -390,7 +387,7 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 UnibankLimitDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -442,7 +439,7 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 KapitalBankDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -494,7 +491,7 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 ABCtelefonDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -547,7 +544,7 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 ABCmehsulDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -599,7 +596,7 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 ABCMehsullarDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -651,7 +648,7 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 FerrumDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -704,7 +701,6 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 FerrumKatibliDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -756,7 +752,7 @@ public class MainGUI extends JFrame {
                 dialog.setVisible(true);
 
                 IrshadDocument.processDocument(values);
-                JOptionPane.showMessageDialog(this, "Qətnamə uğurla yaradıldı", "Uğurlu", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Xəta baş verdi: " + ex.getMessage(), "Xəta", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
