@@ -9,7 +9,7 @@ public class SQLiteConnectionExample {
 
 private static final String DATABASE_URL = "jdbc:sqlite:db\\iddia.db";
 
-    public static List<byte[]> wordFiles() {
+       public static List<byte[]> wordFiles() {
         List<byte[]> fileDataList = new ArrayList<>();
         String query = "SELECT * FROM wordFiles";
 

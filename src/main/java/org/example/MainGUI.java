@@ -41,7 +41,7 @@ public class MainGUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         try {
-            BufferedImage backgroundImage = ImageIO.read(new File("C:\\Users\\Haci\\IdeaProjects\\Word\\src\\main\\java\\org\\example\\court_gavel.jpg"));
+            BufferedImage backgroundImage = ImageIO.read(new File("picture\\court_gavel.jpg"));
             setContentPane(new JPanel() {
                 @Override
                 protected void paintComponent(Graphics g) {
@@ -58,7 +58,7 @@ public class MainGUI extends JFrame {
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 10, 10);
         List<String> proqramSozleri = SQLiteConnectionExample.proqramSozleri();
-        Font titleFont = new Font("Times New Roman", Font.BOLD, 48);
+        Font titleFont = new Font("Times New Roman", Font.BOLD, 40);
         JLabel titleLabel = new JLabel(proqramSozleri.get(0), SwingConstants.CENTER);
         titleLabel.setFont(titleFont);
         titleLabel.setForeground(Color.WHITE);
